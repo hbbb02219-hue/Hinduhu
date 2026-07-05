@@ -31,7 +31,7 @@ SPIN_COOLDOWN_HOURS = 24
 REFERRAL_REWARD_COINS = 100
 REFERRAL_REWARD_XP = 30
 
-CLAN_CREATE_COST = 1000
+CLAN_CREATE_COST = 10
 
 # XP needed to go from level N -> N+1 :  level * 100
 def xp_for_level(level: int) -> int:
