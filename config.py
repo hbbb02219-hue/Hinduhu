@@ -1,80 +1,45 @@
-BOT_TOKEN = "YOUR_BOT_TOKEN"
+# ==========================================
+# Hindu Community Bot
+# config.py
+# ==========================================
 
-ADMINS = [
-    123456789  
-]
+# Bot Token (BotFather से मिला Token यहाँ डालो)
+BOT_TOKEN = "PASTE_YOUR_BOT_TOKEN_HERE"
 
-BOT_NAME = "🕉 Hindu Community Bot"
-import time
+# Admin Telegram User ID
+ADMIN_ID = 123456789
 
-def add_xp(user_id, amount=10):
-    cur.execute(
-        "UPDATE users SET xp = xp + ? WHERE user_id=?",
-        (amount, user_id)
-    )
+# Bot Name
+BOT_NAME = "🚩 Hindu Community Bot"
 
-    cur.execute(
-        "SELECT xp, level FROM users WHERE user_id=?",
-        (user_id,)
-    )
+# Starting Rewards
+START_COINS = 1000
+START_GEMS = 10
+START_HEALTH = 100
+START_LEVEL = 1
+START_XP = 0
 
-    xp, level = cur.fetchone()
+# Fight Settings
+MIN_ATTACK = 10
+MAX_ATTACK = 25
 
-    need = level * 100
+# Enemy Health
+MIN_ENEMY_HP = 50
+MAX_ENEMY_HP = 120
 
-    if xp >= need:
-        cur.execute(
-            "UPDATE users SET level = level + 1 WHERE user_id=?",
-            (user_id,)
-        )
+# Rewards
+MIN_REWARD = 100
+MAX_REWARD = 300
 
-    conn.commit()
+# XP Rewards
+MIN_XP = 20
+MAX_XP = 50
 
+# Daily Reward
+DAILY_COINS = 500
+DAILY_GEMS = 5
 
-def add_coins(user_id, amount):
-    cur.execute(
-        "UPDATE users SET coins = coins + ? WHERE user_id=?",
-        (amount, user_id)
-    )
-    conn.commit()
-
-
-cur.execute("""
-CREATE TABLE IF NOT EXISTS daily(
-user_id INTEGER PRIMARY KEY,
-last_claim INTEGER
-)
-""")
-conn.commit()
-
-
-def claim_daily(user_id):
-    now = int(time.time())
-
-    cur.execute(
-        "SELECT last_claim FROM daily WHERE user_id=?",
-        (user_id,)
-    )
-
-    row = cur.fetchone()
-
-    if row:
-        if now-row[0] < 86400:
-            return False
-
-        cur.execute(
-            "UPDATE daily SET last_claim=? WHERE user_id=?",
-            (now, user_id)
-        )
-
-    else:
-        cur.execute(
-            "INSERT INTO daily VALUES(?,?)",
-            (user_id, now)
-        )
-
-    add_coins(user_id,100)
-
-    conn.commit()
-
-    return True
+# Shop Prices
+WOODEN_SWORD_PRICE = 500
+IRON_SWORD_PRICE = 1500
+DIAMOND_SWORD_PRICE = 5000
