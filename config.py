@@ -5,7 +5,7 @@ Bot Configuration
 """
 
 # अपने BotFather से मिला टोकन यहाँ डालें
-BOT_TOKEN = "8239368102:AAFqhdH4Zr9VrDEaYo3vzyVZZ22LSCRtFpg"
+BOT_TOKEN = "8239368102:AAF8f49xDzUhgIh93pCLwXMMxek7Va43RrI"
 
 # Admin user IDs (Telegram numeric user id). अपनी ID @userinfobot से पता करें।
 ADMIN_IDS = [7663073502]
